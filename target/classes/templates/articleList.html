@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <style type="text/css">
+        .layui-table-box, .layui-table-view {
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+
+<body>
+<table id="article" lay-filter="article-filter"></table>
+<script type="text/html" id="toolBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript" src="layui/layui.all.js"></script>
+
+<script type="text/javascript">
+
+    var $ = layui.jquery;
+    var table = layui.table;
+    var element = layui.element;
+    table.render({
+        elem: '#article'
+        , url: '/article/listArticle'
+        , cols: [[
+            {field: 'id', width: 60, title: 'ID', sort: true}
+            , {field: 'number', width: 180, title: '汽车车牌'}
+            , {field: 'type', width: 200, title: '车辆类型'}
+            , {field: 'enter_time', width: 180, title: '进入时间', sort: true}
+            , {field: 'leave_time', width: 180, title: '离开时间', sort: true}
+            , {field: 'cost', width: 200, title: '停车费用'}
+            , {width: 180, title: '常用操作', align: 'center', toolbar: '#toolBar', fixed: 'right'}
+        ]]
+        , page: true
+        , loading: true
+    });
+</script>
+
+
+<script type="text/javascript">
+    //监听工具条
+    table.on('tool(article-filter)', function (obj) {
+        if (obj.event === 'detail') {
+            layer.msg("查看功能后续版本会添加,敬请期待!")
+        } else if (obj.event === 'del') {
+            var data = obj.data;
+            layer.confirm('真的删除这个文章么?', function (index) {
+                console.log(data.id);
+                $.ajax({
+                    "url": "/article/deleteArticle?id=" + data.id,
+                });
+                obj.del();
+                layer.close(index);
+            });
+        } else if (obj.event === 'edit') {
+            layer.msg("修改功能后续版本会添加,敬请期待!");
+        }
+    });
+
+</script>
+</body>
+</html>

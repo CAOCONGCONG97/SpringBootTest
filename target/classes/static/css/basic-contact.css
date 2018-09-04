@@ -1,0 +1,20 @@
+/*
+Original design: Basic Contact (v1.2 - Sep 11, 2012) - A free xhtml/css website template by Andreas Viklund.
+For more information, see http://www.cssmoban.com/templates/basic-contact/
+*/
+
+body {background:#1a1a1a url("/images/bg.jpg") top center no-repeat; font:90% Georgia,Times New Roman,serif;  line-height:1.6em;}
+a:hover {color:#fff;}
+h1{font-size:3.6em;font-weight:400;letter-spacing:-1px;}
+h2{font-size:1.8em;font-weight:400;letter-spacing:-1px;}
+#wrap{width:720px; padding:20px;margin:0 auto;}
+#sidebar {margin:10px 0 30px 0;width:300px;float:left;}
+#content{margin:30px 0 30px 340px;width:360px;}
+#footer {clear:both;padding:5px 0;color:#555;text-align:center;border-top:1px solid #333;}
+#footer a {color:#555;}
+ul{margin:10px 0;padding:0;width:300px;}
+ul li{margin:0;padding:0 0 0 10px;border-top:1px solid #333;clear:both;display:block;line-height:2em;list-style-type:none;}
+ul li span,ul li a{display:block;float:left;}
+ul li a{font-weight:700;text-decoration:none;width:120px; border:0;}
+ul li a:hover{color:#fff;}
+ul li a:active{color:#eee;}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit"/>
+    <title>停车管理系统</title>
+    <link rel="icon" href="/images/favicon1.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/css/pintuer.css"/>
+    <link rel="stylesheet" href="/css/admin.css"/>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/fontawesome-all.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/pintuer.js"></script>
+    <style type="text/css">
+        .register {
+            position: absolute;
+            right: 164px;
+            bottom: 10px;
+            color: #3969bb;
+        }
+    </style>
+</head>
+<body>
+
+<h1>停车管理系统</h1>
+<div id="bg">
+    <canvas></canvas>
+    <canvas></canvas>
+    <canvas></canvas>
+</div>
+<div class="container">
+    <div class="line bouncein">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <div class="media media-y margin-big-bottom">
+            </div>
+            <form id="user-form" method="post">
+                <div class="panel loginbox">
+                    <div class="text-center margin-big padding-big-top"><h1>用户登录</h1></div>
+                    <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
+
+                        <div class="form-group">
+                            <div class="field field-icon-right">
+                                <input type="text" class="input input-big" id="uname" name="uname" placeholder="请输入登录账号"
+                                       data-validate="required:请填写账号" autocomplete="off"/>
+                                <span class="icon icon-user margin-small"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="field field-icon-right">
+                                <input type="password" class="input input-big" id="upassword" name="upassword"
+                                       placeholder="请输入登录密码"
+                                       data-validate="required:请填写密码"/>
+                                <span class="icon icon-key margin-small"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="padding:30px;">
+                        <input type="button" class="button button-block bg-main text-big input-big" value="确认登录">
+                    </div>
+
+                    <div style="padding:10px;">
+                        <a href="/register" class="register">注册用户</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Copyright &copy;2018.软件1602课程设计：停车管理系统.<a target="_blank" href="calhost:8080/login#"></a></p>
+</div>
+
+<script type="text/javascript" src="/layui/layui.all.js"></script>
+<script type="text/javascript">
+    var layer = layui.layer;
+    $(".button").click(function () {
+        $(this).css({"background": "#1E9FFF"});
+        console.log($("#user-form").serialize());
+        /*ajax发送请求给服务器注册用户*/
+        $.ajax({
+            url: "/user/loginByUser",
+            data: $('#user-form').serialize(),
+            type: "POST",
+            dataType: "json"
+        }).done(function (data) {
+            if (data.code == 0) {
+                layer.msg("登录成功");
+                window.location.href = "/index";
+
+            } else {
+                layer.msg("登录失败,请检查重新登录!")
+            }
+        }).fail(function () {
+            //失败
+        });
+    });
+</script>
+
+<script src="js/canva_moving_effect.js"></script>
+</body>
+</html>

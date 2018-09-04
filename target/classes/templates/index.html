@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>停车管理系统后台管理</title>
+    <link rel="icon" href="/images/favicon1.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <style type="text/css">
+        .layui-layout-admin .layui-body {
+            bottom: 39px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">停车管理后台管理</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="/images/y.jpg" class="layui-nav-img">
+                    <span th:text="${session.uname}"></span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/login">退出登录</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;" target="miframe" id="article-manager">车场管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="info" href="#">停车场概况</a></dd>
+                        <dd><a id="add" href="#">添加车辆信息</a></dd>
+                        <dd><a id="black_name" href="#">车辆黑名单</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">留言管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a id="message" href="#">粉丝留言</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a id="about" herf="#">关于我们</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <iframe id="iframe" name="miframe" style="background-color: #f1f1f1;width: 100%;height: 99%" scrolling="auto"
+                frameborder="none" src="/articleList">
+        </iframe>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © 软件1602 课程设计：停车场管理系统
+    </div>
+</div>
+<script src="/layui/layui.all.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script>
+    var element = layui.element;
+    $("#add").click(function () {
+        $("#iframe").attr("src","/add");
+    });
+
+    $("#about").click(function () {
+        $("#iframe").attr("src","/about");
+    });
+
+    $("#black_name").click(function () {
+        $("#iframe").attr("src","/black_name");
+    });
+
+    $("#allArticle").click(function () {
+        $("#iframe").attr("src","/articleList");
+    });
+    $("#message").click(function () {
+        $("#iframe").attr("src","/message");
+    });
+    $("#info").click(function () {
+        $("#iframe").attr("src","/articleList");
+    });
+
+</script>
+
+<embed src="1.mp3" autostart="true" loop="true" hidden="true"></embed>
+</body>
+</html>
